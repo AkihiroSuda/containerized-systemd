@@ -1,13 +1,11 @@
 # Dockerfile examples for containerized systemd
 
 * `Dockerfile.archlinux`: Arch Linux (systemd 244, as of Feb 2020)
+* `Dockerfile.centos-8.1`: CentOS 8.1 (systemd 239)
 * `Dockerfile.debian-10`: Debian GNU/Linux 10 (systemd 241)
 * `Dockerfile.fedora-31`: Fedora 31 (systemd 243)
 * `Dockerfile.opensuse-tumbleweed`: openSUSE Tumbleweed (systemd 244, as of Feb 2020)
 * `Dockerfile.ubuntu-20.04`: Ubuntu 20.04 (systemd 244)
-
-Unstable:
-* `Dockerfile.centos-8.1`: CentOS 8.1 (systemd 239): container doesn't exit when not connected to a real terminal (e.g. `docker run -d -t`)
 
 ## Demo
 

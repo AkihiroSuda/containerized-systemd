@@ -15,8 +15,5 @@ jobs:
       run: ./.hack/test.sh Dockerfile.archlinux
     - name: openSUSE Tumbleweed
       run: ./.hack/test.sh Dockerfile.opensuse-tumbleweed
-    - name: CentOS 8.1 (Unstable)
-      # container doesn't exit when running with `docker run -d`
+    - name: CentOS 8.1
       run: ./.hack/test.sh Dockerfile.centos-8.1
-      continue-on-error: true
-      timeout-minutes: 3
