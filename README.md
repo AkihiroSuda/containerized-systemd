@@ -1,5 +1,6 @@
 # Dockerfile examples for containerized systemd
 
+* `Dockerfile.archlinux`: Arch Linux (systemd 244, as of Feb 2020)
 * `Dockerfile.debian-10`: Debian GNU/Linux 10 (systemd 241)
 * `Dockerfile.fedora-31`: Fedora 31 (systemd 243)
 * `Dockerfile.ubuntu-20.04`: Ubuntu 20.04 (systemd 244)

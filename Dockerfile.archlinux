@@ -1,0 +1,5 @@
+FROM archlinux:latest
+RUN pacman -Sy --noconfirm systemd systemd-sysvcompat && \
+  systemctl mask systemd-firstboot.service
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]

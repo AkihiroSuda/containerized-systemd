@@ -8,6 +8,6 @@ set -x
 for dockerfile in $@; do
 	echo "=== Testing ${dockerfile} ==="
 	iid=$(docker build -q -f ${dockerfile} .)
-	docker run -t --rm --privileged $iid systemctl status
+	docker run -t --rm --privileged $iid systemctl status --no-pager
 	docker image rm $iid
 done
