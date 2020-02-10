@@ -1,0 +1,18 @@
+name: CI
+on: [push, pull_request]
+jobs:
+ test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Debian GNU/Linux 10
+      run: ./.hack/test.sh Dockerfile.debian-10
+    - name: Fedora 31
+      run: ./.hack/test.sh Dockerfile.fedora-31
+    - name: Ubuntu 20.04
+      run: ./.hack/test.sh Dockerfile.ubuntu-20.04
+    - name: CentOS 8.1 (Unstable)
+      # container doesn't exit when running with `docker run -d`
+      run: ./.hack/test.sh Dockerfile.centos-8.1
+      continue-on-error: true
+      timeout-minutes: 3
