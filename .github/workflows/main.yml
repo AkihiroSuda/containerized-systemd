@@ -13,6 +13,8 @@ jobs:
       run: ./.hack/test.sh Dockerfile.ubuntu-20.04
     - name: Arch Linux
       run: ./.hack/test.sh Dockerfile.archlinux
+    - name: openSUSE Tumbleweed
+      run: ./.hack/test.sh Dockerfile.opensuse-tumbleweed
     - name: CentOS 8.1 (Unstable)
       # container doesn't exit when running with `docker run -d`
       run: ./.hack/test.sh Dockerfile.centos-8.1

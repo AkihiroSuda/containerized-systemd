@@ -1,0 +1,4 @@
+FROM opensuse/tumbleweed:latest
+RUN zypper install -y systemd systemd-sysvinit
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]

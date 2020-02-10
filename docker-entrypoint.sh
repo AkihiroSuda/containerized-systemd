@@ -9,11 +9,11 @@ if [ ! -t 0 ]; then
 fi
 
 if [ $# -gt 0 ]; then
-	cat >/lib/systemd/system/docker-entrypoint.target <<EOF
+	cat >/etc/systemd/system/docker-entrypoint.target <<EOF
 [Unit]
 Description=the target for docker-entrypoint.service
 EOF
-	cat >/lib/systemd/system/docker-entrypoint.service <<EOF
+	cat >/etc/systemd/system/docker-entrypoint.service <<EOF
 [Unit]
 Description=docker-entrypoint.service ($@)
 After=docker-entrypoint.target
