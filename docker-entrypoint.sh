@@ -35,6 +35,8 @@ else
 	exit 1
 fi
 
+systemctl mask systemd-firstboot.service systemd-udevd.service
+
 systemd_args="--show-status=false --unit=docker-entrypoint.target"
 echo "$0: starting /sbin/init $systemd_args"
 exec /sbin/init $systemd_args
