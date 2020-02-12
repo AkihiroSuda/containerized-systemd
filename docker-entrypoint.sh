@@ -5,12 +5,18 @@ container=docker
 export container
 
 if [ $# -eq 0 ]; then
-	echo >&2 'ERROR: No command specified. You probably want to run \"bash\"?'
+	echo >&2 'ERROR: No command specified. You probably want to run `journalctl -f`, or maybe `bash`?'
 	exit 1
 fi
 
 if [ ! -t 0 ]; then
 	echo >&2 'ERROR: TTY needs to be enabled (`docker run -t ...`).'
+	exit 1
+fi
+
+if [ ! -x /bin/bash ]; then
+	# the unit file depends on bash-builtin `kill`
+	echo >&2 'ERROR: /bin/bash needs to be installed'
 	exit 1
 fi
 
@@ -27,8 +33,9 @@ Description=docker-entrypoint.service ($@)
 After=docker-entrypoint.target
 
 [Service]
-ExecStart=/bin/sh -xec "$@"
-ExecStopPost=systemctl exit \$EXIT_STATUS
+ExecStart=/bin/bash -xec "$@"
+# EXIT_STATUS is either an exit code integer or a signal name string, see systemd.exec(5)
+ExecStopPost=/bin/bash -ec "if echo \${EXIT_STATUS} | grep [A-Z] > /dev/null; then echo >&2 \"got signal \${EXIT_STATUS}\"; systemctl exit \$(( 128 + \$( kill -l \${EXIT_STATUS} ) )); else systemctl exit \${EXIT_STATUS}; fi"
 StandardInput=tty-force
 StandardOutput=inherit
 StandardError=inherit
