@@ -84,3 +84,11 @@ host$ echo $?
 
 ## Bugs
 * `docker run` needs `-t`
+
+## About --privileged
+
+The examples above specify `--privileged`, but it's also possible to run these by "just" passing some other flags. These flags are: `--tmpfs /tmp --tmpfs /run --tmfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro`
+
+If you pass `--privileged` in, then you're requiring that this container has full system privileges, which is often not required or wanted.
+
+Some details are provided in [this post](https://developers.redhat.com/blog/2016/09/13/running-systemd-in-a-non-privileged-container/) but don't contain all the required tmpfs paths to mount.
