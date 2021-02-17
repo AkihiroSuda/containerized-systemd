@@ -16,7 +16,12 @@ jobs:
 # https://bugs.archlinux.org/task/69563
 #    - name: Arch Linux
 #      run: ./.hack/test.sh Dockerfile.archlinux
-    - name: openSUSE Tumbleweed
-      run: ./.hack/test.sh Dockerfile.opensuse-tumbleweed
+# Skip Dockerfile.opensuse-tumbleweed on GHA due to an unknown error:
+# > ERROR: fillup not found. This should not happen. Please compare
+# > /etc/sysconfig/security and /sysconfig.security and
+# > update by hand.
+# > error opening /etc/sysconfig/security: No such file or directory
+#    - name: openSUSE Tumbleweed
+#      run: ./.hack/test.sh Dockerfile.opensuse-tumbleweed
     - name: CentOS 8.3
       run: ./.hack/test.sh Dockerfile.centos-8.3
