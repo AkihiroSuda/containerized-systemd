@@ -7,13 +7,21 @@ jobs:
     - uses: actions/checkout@master
     - name: Debian GNU/Linux 10
       run: ./.hack/test.sh Dockerfile.debian-10
-    - name: Fedora 31
-      run: ./.hack/test.sh Dockerfile.fedora-31
+    - name: Fedora 33
+      run: ./.hack/test.sh Dockerfile.fedora-33
     - name: Ubuntu 20.04
       run: ./.hack/test.sh Dockerfile.ubuntu-20.04
-    - name: Arch Linux
-      run: ./.hack/test.sh Dockerfile.archlinux
-    - name: openSUSE Tumbleweed
-      run: ./.hack/test.sh Dockerfile.opensuse-tumbleweed
-    - name: CentOS 8.1
-      run: ./.hack/test.sh Dockerfile.centos-8.1
+# Skip Dockerfile.archlinux on GHA due to syscall issue
+# https://www.reddit.com/r/archlinux/comments/lek2ba/arch_linux_on_docker_ci_could_not_find_or_read/
+# https://bugs.archlinux.org/task/69563
+#    - name: Arch Linux
+#      run: ./.hack/test.sh Dockerfile.archlinux
+# Skip Dockerfile.opensuse-tumbleweed on GHA due to an unknown error:
+# > ERROR: fillup not found. This should not happen. Please compare
+# > /etc/sysconfig/security and /sysconfig.security and
+# > update by hand.
+# > error opening /etc/sysconfig/security: No such file or directory
+#    - name: openSUSE Tumbleweed
+#      run: ./.hack/test.sh Dockerfile.opensuse-tumbleweed
+    - name: CentOS 8.3
+      run: ./.hack/test.sh Dockerfile.centos-8.3
