@@ -11,8 +11,11 @@ jobs:
       run: ./.hack/test.sh Dockerfile.fedora-33
     - name: Ubuntu 20.04
       run: ./.hack/test.sh Dockerfile.ubuntu-20.04
-    - name: Arch Linux
-      run: ./.hack/test.sh Dockerfile.archlinux
+# Skip Dockerfile.archlinux on GHA due to syscall issue
+# https://www.reddit.com/r/archlinux/comments/lek2ba/arch_linux_on_docker_ci_could_not_find_or_read/
+# https://bugs.archlinux.org/task/69563
+#    - name: Arch Linux
+#      run: ./.hack/test.sh Dockerfile.archlinux
     - name: openSUSE Tumbleweed
       run: ./.hack/test.sh Dockerfile.opensuse-tumbleweed
     - name: CentOS 8.3
