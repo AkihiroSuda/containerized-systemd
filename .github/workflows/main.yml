@@ -7,13 +7,13 @@ jobs:
     - uses: actions/checkout@master
     - name: Debian GNU/Linux 10
       run: ./.hack/test.sh Dockerfile.debian-10
-    - name: Fedora 31
-      run: ./.hack/test.sh Dockerfile.fedora-31
+    - name: Fedora 33
+      run: ./.hack/test.sh Dockerfile.fedora-33
     - name: Ubuntu 20.04
       run: ./.hack/test.sh Dockerfile.ubuntu-20.04
     - name: Arch Linux
       run: ./.hack/test.sh Dockerfile.archlinux
     - name: openSUSE Tumbleweed
       run: ./.hack/test.sh Dockerfile.opensuse-tumbleweed
-    - name: CentOS 8.1
-      run: ./.hack/test.sh Dockerfile.centos-8.1
+    - name: CentOS 8.3
+      run: ./.hack/test.sh Dockerfile.centos-8.3

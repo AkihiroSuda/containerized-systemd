@@ -1,5 +1,0 @@
-FROM fedora:31
-# As of Feb 11, 2020, /tmp is not clean by default :(
-RUN rm -rf /tmp/*
-COPY docker-entrypoint.sh /
-ENTRYPOINT ["/docker-entrypoint.sh"]
