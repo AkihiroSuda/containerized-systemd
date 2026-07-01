@@ -1,8 +1,10 @@
 name: CI
 on:
   push:
-    tags:
-    - 'v*'
+    branches:
+      - main
+      - master
+      - 'release/**'
   pull_request:
 jobs:
   generate-dockerfile-matrix:
