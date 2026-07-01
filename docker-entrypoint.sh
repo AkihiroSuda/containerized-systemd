@@ -13,6 +13,14 @@ if [ ! -t 0 ]; then
 	exit 1
 fi
 
+# The controlling terminal of this entrypoint is the `docker run -t` pty.
+# We pin the service's StandardInput to this path explicitly, because modern
+# systemd (>= v258) resolves the default TTYPath=/dev/console to the
+# "active console" listed in /proc/consoles. Under a VM-backed runtime such as
+# Docker Desktop, that is the VM console (e.g. /dev/hvc0), not the docker pty,
+# so the interactive shell would attach to the wrong terminal and appear hung.
+tty_path="$(tty)"
+
 env >/etc/docker-entrypoint-env
 
 cat >/etc/systemd/system/docker-entrypoint.target <<EOF
@@ -32,6 +40,7 @@ Description=docker-entrypoint.service
 ExecStart=/bin/bash -exc "source /etc/docker-entrypoint-cmd"
 # EXIT_STATUS is either an exit code integer or a signal name string, see systemd.exec(5)
 ExecStopPost=/bin/bash -ec "if echo \${EXIT_STATUS} | grep [A-Z] > /dev/null; then echo >&2 \"got signal \${EXIT_STATUS}\"; systemctl exit \$(( 128 + \$( kill -l \${EXIT_STATUS} ) )); else systemctl exit \${EXIT_STATUS}; fi"
+TTYPath=${tty_path}
 StandardInput=tty-force
 StandardOutput=inherit
 StandardError=inherit
