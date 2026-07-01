@@ -1,5 +1,4 @@
-FROM fedora:33
-RUN dnf install -y systemd && \
-  rm -rf /tmp/*
+FROM opensuse/leap:16
+RUN zypper install -y systemd
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]

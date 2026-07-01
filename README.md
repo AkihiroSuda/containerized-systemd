@@ -1,12 +1,5 @@
 # Dockerfile examples for containerized systemd (mainly for test environments)
 
-* `Dockerfile.archlinux`: Arch Linux (systemd 247, as of Feb 2021)
-* `Dockerfile.centos-8.3`: CentOS 8.3 (systemd 239)
-* `Dockerfile.debian-10`: Debian GNU/Linux 10 (systemd 241)
-* `Dockerfile.fedora-33`: Fedora 33 (systemd 246)
-* `Dockerfile.opensuse-tumbleweed`: openSUSE Tumbleweed (systemd 246, as of Feb 2021)
-* `Dockerfile.ubuntu-20.04`: Ubuntu 20.04 (systemd 245)
-
 ## Demo 1: interactive shell with `systemctl`
 
 * The command (`/bin/bash`) specified as the argument of `docker run` is executed as the foreground job in the container.
